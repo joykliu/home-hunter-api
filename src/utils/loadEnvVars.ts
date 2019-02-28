@@ -1,11 +1,11 @@
-const fs = require("fs");
-const dotenv = require("dotenv");
+import fs from "fs";
+import dotenv from "dotenv";
 
-function override(envObj) {
+function override(envObj: any) {
   process.env = { ...process.env, ...envObj };
 }
 
-function loadEnvVar() {
+export default function loadEnvVar() {
   const enviroment = process.env.NODE_ENV || "development";
 
   if (enviroment !== "production") {
@@ -21,4 +21,3 @@ function loadEnvVar() {
   }
 }
 
-module.exports = loadEnvVar;

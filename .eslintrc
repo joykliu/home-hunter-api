@@ -1,0 +1,64 @@
+{
+  "plugins": [
+    "prettier",
+    "@typescript-eslint/eslint-plugin-tslint",
+    "eslint-plugin-prettier"
+  ],
+  "extends": [
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "useJSXTextNode": true,
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "no-undef": "off",
+        "@typescript-eslint/tslint/config": [
+          "warn",
+          {
+            "rulesDirectory": ["tslint-plugin-prettier"],
+            "rules": {
+              "prettier": [true, { "singleQuote": false }]
+            }
+          }
+        ],
+        "dot-location": [2, "property"],
+        "no-useless-catch": "none",
+        "jest/lowercase-name": [
+          "error",
+          {
+            "ignore": ["describe", "test", "it"]
+          }
+        ],
+        "no-unused-vars": "off",
+        "react/jsx-uses-vars": "none"
+      },
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".ts"]
+          }
+        }
+      }
+    }
+  ]
+}
