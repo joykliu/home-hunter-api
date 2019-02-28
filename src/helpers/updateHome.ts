@@ -3,10 +3,11 @@ import getPool from "./adapters";
 const updateHome = async (id: number, data: any) => {
   const { cost, address, type, features, status, contact, photo, notes } = data;
   try {
-    await getPool().query(`
+    await getPool().query(
+      `
       UPDATE homes SET
         cost = $1,
-        address = $2, 
+        address = $2,
         type = $3,
         features = $4,
         status = $5,
@@ -30,13 +31,12 @@ const updateHome = async (id: number, data: any) => {
         current_timestamp
       );
       `,
-      [ cost, address, type, features, status, contact, photo, notes, id ]
-      );
+      [cost, address, type, features, status, contact, photo, notes, id]
+    );
     return `Home updated with ID: ${id}`;
-  }
-  catch (err) {
+  } catch (err) {
     throw new Error(err);
   }
-}
+};
 
 export default updateHome;

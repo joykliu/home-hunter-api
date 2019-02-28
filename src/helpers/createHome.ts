@@ -3,11 +3,12 @@ import getPool from "./adapters";
 const createHome = async (uuid: string, data: any) => {
   const { cost, address, type, features, status, contact, photo, notes } = data;
   try {
-    await getPool().query(`
+    await getPool().query(
+      `
       INSERT INTO homes (
         "id",
         "cost",
-        "address", 
+        "address",
         "type",
         "features",
         "status",
@@ -18,7 +19,7 @@ const createHome = async (uuid: string, data: any) => {
         "updatedat"
       )
       VALUES (
-        $1, 
+        $1,
         $2,
         $3,
         $4,
@@ -31,13 +32,22 @@ const createHome = async (uuid: string, data: any) => {
         current_timestamp
       );
     `, // use sql injection instead of variables for security reasons
-    [ uuid, JSON.stringify(cost), address, type, features, status, JSON.stringify(contact), photo, notes ]
+      [
+        uuid,
+        JSON.stringify(cost),
+        address,
+        type,
+        features,
+        status,
+        JSON.stringify(contact),
+        photo,
+        notes
+      ]
     );
     return `Home created with ID: ${uuid}`;
-  }
-  catch (err) {
+  } catch (err) {
     throw new Error(err);
   }
-}
+};
 
 export default createHome;

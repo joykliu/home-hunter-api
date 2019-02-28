@@ -7,10 +7,9 @@ const getHomes = async () => {
       throw new Error("No homes found");
     }
     return res;
-  }
-  catch (err) {
+  } catch (err) {
     throw new Error(err);
   }
-}
+};
 
 export default getHomes;
