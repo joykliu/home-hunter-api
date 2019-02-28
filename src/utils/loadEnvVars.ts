@@ -1,5 +1,5 @@
-import fs from "fs";
 import dotenv from "dotenv";
+import fs from "fs";
 
 function override(envObj: any) {
   process.env = { ...process.env, ...envObj };
@@ -20,4 +20,3 @@ export default function loadEnvVar() {
     override(dotenv.parse(fs.readFileSync(".env.production.local")));
   }
 }
-

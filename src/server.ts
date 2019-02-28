@@ -1,15 +1,17 @@
+import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
-import bodyParser from "body-parser";
+import routes from "./routes";
 import loadEnv from "./utils/loadEnv";
 import loadEnvVars from "./utils/loadEnvVars";
-import routes from "./routes";
 
 loadEnvVars();
 
 const port = loadEnv("PORT");
 const app = express();
 const corsMiddleware = cors({ origin: loadEnv("CORS_ORIGIN") });
+
+app.set("port", port || 8080);
 
 app
   .use(corsMiddleware)
@@ -22,6 +24,7 @@ app
   .use("/", routes);
 
 app.listen(port, () => {
+  // tslint:disable-next-line:no-console
   console.log(`App running on port ${port}.`);
 });
 
